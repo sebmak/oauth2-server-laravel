@@ -145,7 +145,7 @@ class AuthorizationServerProxy
      * 
      * @return Response the appropriate response object
      */
-    public function performAccessTokenFlow()
+    public function performAccessTokenFlow($respond=true)
     {
         try {
 
@@ -178,7 +178,9 @@ class AuthorizationServerProxy
 
             return Response::json($response, 500);
         }
-
-        return Response::json($response);
+        if($respond){
+            return Response::json($response, 200);
+        }
+        return $response;
     }
 }
